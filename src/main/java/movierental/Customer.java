@@ -21,25 +21,25 @@ public class Customer {
     }
 
     public String statement() {
-        String result = "Rental Record for " + getName() + "\n";
+        StringBuilder result = new StringBuilder("Rental Record for " + getName() + "\n");
         for (Rental each : _rentals) {
-            result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.getAmount()) + "\n";
+            result.append("\t").append(each.getMovie().getTitle()).append("\t").append(each.getAmount()).append("\n");
         }
-        result += "Amount owed is " + String.valueOf(getTotalAmount()) + "\n";
-        result += "You earned " + String.valueOf(getTotalFrequentRenterPoints()) + " frequent renter points";
-        return result;
+        result.append("Amount owed is ").append(getTotalAmount()).append("\n");
+        result.append("You earned ").append(getTotalFrequentRenterPoints()).append(" frequent renter points");
+        return result.toString();
     }
 
     public String htmlStatement() {
-        String result = "<h1>Rental Record for <em>" + getName() + "</em></h1>\n";
-        result += "<table>\n";
+        StringBuilder result = new StringBuilder("<h1>Rental Record for <em>" + getName() + "</em></h1>\n");
+        result.append("<table>\n");
         for (Rental each : _rentals) {
-            result += "  <tr><td>" + each.getMovie().getTitle() + "</td><td>" + each.getAmount() + "</td></tr>\n";
+            result.append("  <tr><td>").append(each.getMovie().getTitle()).append("</td><td>").append(each.getAmount()).append("</td></tr>\n");
         }
-        result += "</table>\n";
-        result += "<p>Amount owed is <em>" + getTotalAmount() + "</em></p>\n";
-        result += "<p>You earned <em>" + getTotalFrequentRenterPoints() + "</em> frequent renter points</p>";
-        return result;
+        result.append("</table>\n");
+        result.append("<p>Amount owed is <em>").append(getTotalAmount()).append("</em></p>\n");
+        result.append("<p>You earned <em>").append(getTotalFrequentRenterPoints()).append("</em> frequent renter points</p>");
+        return result.toString();
     }
 
     private double getTotalAmount() {
