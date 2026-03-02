@@ -134,4 +134,43 @@ public class CustomerTest {
                 "You earned 1 frequent renter points";
         assertEquals(expected, customer.statement());
     }
+
+    @Test
+    public void htmlStatementWithMultipleRentals() {
+        Customer customer = new Customer("martin");
+        customer.addRental(new Rental(new Movie("Ran", Movie.REGULAR), 3));
+        customer.addRental(new Rental(new Movie("Trois Couleurs: Bleu", Movie.REGULAR), 2));
+        String expected = "<h1>Rental Record for <em>martin</em></h1>\n" +
+                "<table>\n" +
+                "  <tr><td>Ran</td><td>3.5</td></tr>\n" +
+                "  <tr><td>Trois Couleurs: Bleu</td><td>2.0</td></tr>\n" +
+                "</table>\n" +
+                "<p>Amount owed is <em>5.5</em></p>\n" +
+                "<p>You earned <em>2</em> frequent renter points</p>";
+        assertEquals(expected, customer.htmlStatement());
+    }
+
+    @Test
+    public void htmlStatementWithNoRentals() {
+        Customer customer = new Customer("Alice");
+        String expected = "<h1>Rental Record for <em>Alice</em></h1>\n" +
+                "<table>\n" +
+                "</table>\n" +
+                "<p>Amount owed is <em>0.0</em></p>\n" +
+                "<p>You earned <em>0</em> frequent renter points</p>";
+        assertEquals(expected, customer.htmlStatement());
+    }
+
+    @Test
+    public void htmlStatementWithSingleRental() {
+        Customer customer = new Customer("Bob");
+        customer.addRental(new Rental(new Movie("Matrix", Movie.NEW_RELEASE), 2));
+        String expected = "<h1>Rental Record for <em>Bob</em></h1>\n" +
+                "<table>\n" +
+                "  <tr><td>Matrix</td><td>6.0</td></tr>\n" +
+                "</table>\n" +
+                "<p>Amount owed is <em>6.0</em></p>\n" +
+                "<p>You earned <em>2</em> frequent renter points</p>";
+        assertEquals(expected, customer.htmlStatement());
+    }
 }

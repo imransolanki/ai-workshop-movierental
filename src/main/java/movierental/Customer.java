@@ -30,6 +30,18 @@ public class Customer {
         return result;
     }
 
+    public String htmlStatement() {
+        String result = "<h1>Rental Record for <em>" + getName() + "</em></h1>\n";
+        result += "<table>\n";
+        for (Rental each : _rentals) {
+            result += "  <tr><td>" + each.getMovie().getTitle() + "</td><td>" + each.getAmount() + "</td></tr>\n";
+        }
+        result += "</table>\n";
+        result += "<p>Amount owed is <em>" + getTotalAmount() + "</em></p>\n";
+        result += "<p>You earned <em>" + getTotalFrequentRenterPoints() + "</em> frequent renter points</p>";
+        return result;
+    }
+
     private double getTotalAmount() {
         double total = 0;
         for (Rental each : _rentals) {
