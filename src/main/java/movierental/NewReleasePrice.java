@@ -6,10 +6,6 @@ public class NewReleasePrice extends Price {
     private static final int BONUS_POINTS = 2;
     private static final int REGULAR_POINTS = 1;
     
-    public int getPriceCode() {
-        return Movie.NEW_RELEASE;
-    }
-    
     public double getAmount(int daysRented) {
         return daysRented * CHARGE_PER_DAY;
     }

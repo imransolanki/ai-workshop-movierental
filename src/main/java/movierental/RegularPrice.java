@@ -5,10 +5,6 @@ public class RegularPrice extends Price {
     private static final int DAYS_THRESHOLD = 2;
     private static final double EXTRA_CHARGE_PER_DAY = 1.5;
     
-    public int getPriceCode() {
-        return Movie.REGULAR;
-    }
-    
     public double getAmount(int daysRented) {
         double amount = BASE_AMOUNT;
         if (daysRented > DAYS_THRESHOLD)
